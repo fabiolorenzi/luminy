@@ -1,0 +1,47 @@
+[
+    {
+        "file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\Luminy.Build.cs",
+        "command": "\"cl.exe\" @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Default\\Luminy.193.rsp\"",
+        "directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\Luminy.cpp",
+        "command": "\"cl.exe\" @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Default\\Luminy.193.rsp\"",
+        "directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\Luminy.h",
+        "command": "\"cl.exe\" @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Default\\Luminy.193.rsp\"",
+        "directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\LuminyGameModeBase.cpp",
+        "command": "\"cl.exe\" @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Default\\Luminy.193.rsp\"",
+        "directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\LuminyGameModeBase.h",
+        "command": "\"cl.exe\" @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Default\\Luminy.193.rsp\"",
+        "directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\MainGameMode.cpp",
+        "command": "\"cl.exe\" @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Default\\Luminy.193.rsp\"",
+        "directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\MainGameMode.h",
+        "command": "\"cl.exe\" @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Default\\Luminy.193.rsp\"",
+        "directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\PlayerCharacter.cpp",
+        "command": "\"cl.exe\" @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Default\\Luminy.193.rsp\"",
+        "directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\PlayerCharacter.h",
+        "command": "\"cl.exe\" @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Default\\Luminy.193.rsp\"",
+        "directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+    }
+]
