@@ -49,6 +49,8 @@ public:
 	void PlayerRunning();
 	void PlayerNotRunning();
 	void PauseGame();
+	void RestartGame();
+	void QuitGame();
 
 protected:
 	virtual void BeginPlay() override;

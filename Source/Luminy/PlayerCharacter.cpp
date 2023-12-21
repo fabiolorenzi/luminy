@@ -86,6 +86,20 @@ void APlayerCharacter::PauseGame()
 	UGameplayStatics::GetPlayerController(GetWorld(), 0)->bEnableMouseOverEvents = IsPaused;
 }
 
+void APlayerCharacter::RestartGame()
+{
+	if (IsPaused) {
+		UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
+	};
+}
+
+void APlayerCharacter::QuitGame()
+{
+	if (IsPaused) {
+		FGenericPlatformMisc::RequestExit(false);
+	};
+}
+
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
@@ -128,6 +142,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction("Running", IE_Pressed, this, &APlayerCharacter::PlayerRunning);
 	PlayerInputComponent->BindAction("Running", IE_Released, this, &APlayerCharacter::PlayerNotRunning);
 	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &APlayerCharacter::PauseGame).bExecuteWhenPaused = true;
+	PlayerInputComponent->BindAction("RestartGame", IE_Pressed, this, &APlayerCharacter::RestartGame).bExecuteWhenPaused = true;
+	PlayerInputComponent->BindAction("QuitGame", IE_Pressed, this, &APlayerCharacter::QuitGame).bExecuteWhenPaused = true;
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
