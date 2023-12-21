@@ -43,6 +43,7 @@ public:
 	void MoveRight(float Axis);
 	void PlayerRunning();
 	void PlayerNotRunning();
+	void PauseGame();
 
 protected:
 	virtual void BeginPlay() override;

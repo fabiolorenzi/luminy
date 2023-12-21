@@ -73,6 +73,16 @@ void APlayerCharacter::PlayerNotRunning()
 	GetCharacterMovement()->MaxWalkSpeed = WalkingSpeed;
 }
 
+void APlayerCharacter::PauseGame()
+{
+	IsPaused = !IsPaused;
+
+	UGameplayStatics::GetPlayerController(GetWorld(), 0)->Pause();
+	UGameplayStatics::GetPlayerController(GetWorld(), 0)->bShowMouseCursor = IsPaused;
+	UGameplayStatics::GetPlayerController(GetWorld(), 0)->bEnableClickEvents = IsPaused;
+	UGameplayStatics::GetPlayerController(GetWorld(), 0)->bEnableMouseOverEvents = IsPaused;
+}
+
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
@@ -103,6 +113,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 	PlayerInputComponent->BindAction("Running", IE_Pressed, this, &APlayerCharacter::PlayerRunning);
 	PlayerInputComponent->BindAction("Running", IE_Released, this, &APlayerCharacter::PlayerNotRunning);
+	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &APlayerCharacter::PauseGame).bExecuteWhenPaused = true;
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
