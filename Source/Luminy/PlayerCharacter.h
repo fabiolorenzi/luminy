@@ -31,9 +31,18 @@ public:
 		bool IsPlayerDead;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
 		int CatchedTargets;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
+		float RunningPower;
+	
+	bool IsRunning;
+	bool IsRunningBlocked;
+
+	float WalkingSpeed;
 
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);
+	void PlayerRunning();
+	void PlayerNotRunning();
 
 protected:
 	virtual void BeginPlay() override;

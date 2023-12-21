@@ -29,7 +29,12 @@ APlayerCharacter::APlayerCharacter()
 	IsPaused = false;
 	IsPlayerDead = false;
 	Life = 100.0f;
+	RunningPower = 30.0f;
+	IsRunningBlocked = false;
+	IsRunning = false;
 	CatchedTargets = 0;
+
+	WalkingSpeed = GetCharacterMovement()->MaxWalkSpeed;
 }
 
 void APlayerCharacter::MoveForward(float Axis)
@@ -37,7 +42,9 @@ void APlayerCharacter::MoveForward(float Axis)
 	if (!IsPlayerDead) {
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+
 		AddMovementInput(Direction, Axis);
 	};
 }
@@ -52,6 +59,20 @@ void APlayerCharacter::MoveRight(float Axis)
 	};
 }
 
+void APlayerCharacter::PlayerRunning()
+{
+	if (!IsRunningBlocked) {
+		IsRunning = true;
+		GetCharacterMovement()->MaxWalkSpeed = WalkingSpeed * 2;
+	};
+}
+
+void APlayerCharacter::PlayerNotRunning()
+{
+	IsRunning = false;
+	GetCharacterMovement()->MaxWalkSpeed = WalkingSpeed;
+}
+
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
@@ -60,12 +81,28 @@ void APlayerCharacter::BeginPlay()
 void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (IsRunning && RunningPower > 0.0f && !IsRunningBlocked) {
+		RunningPower -= DeltaTime * 2;
+	} else if (RunningPower < 30.0f) {
+		RunningPower += DeltaTime * 0.5f;
+	};
+
+	if (RunningPower <= 0) {
+		IsRunningBlocked = true;
+	};
+
+	if (IsRunningBlocked && RunningPower >= 15.0f) {
+		IsRunningBlocked = false;
+	};
 }
 
 void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	PlayerInputComponent->BindAction("Running", IE_Pressed, this, &APlayerCharacter::PlayerRunning);
+	PlayerInputComponent->BindAction("Running", IE_Released, this, &APlayerCharacter::PlayerNotRunning);
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
