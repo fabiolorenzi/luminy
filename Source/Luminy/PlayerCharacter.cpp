@@ -119,8 +119,6 @@ void APlayerCharacter::Tick(float DeltaTime)
 		Minutes += 1;
 		Seconds = 0.0f;
 	};
-
-	UE_LOG(LogTemp, Warning, TEXT("seconds: %i"), Seconds);
 }
 
 void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
