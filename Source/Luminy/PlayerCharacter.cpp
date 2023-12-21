@@ -33,6 +33,9 @@ APlayerCharacter::APlayerCharacter()
 	IsRunningBlocked = false;
 	IsRunning = false;
 	CatchedTargets = 0;
+	Seconds = 0;
+	Minutes = 0;
+	TemporaryTime = 0.0f;
 
 	WalkingSpeed = GetCharacterMovement()->MaxWalkSpeed;
 }
@@ -105,6 +108,19 @@ void APlayerCharacter::Tick(float DeltaTime)
 	if (IsRunningBlocked && RunningPower >= 15.0f) {
 		IsRunningBlocked = false;
 	};
+
+	TemporaryTime += DeltaTime;
+	if (TemporaryTime >= 1.0f) {
+		TemporaryTime -= 1;
+		Seconds += 1;
+	};
+
+	if (Seconds >= 60.0f) {
+		Minutes += 1;
+		Seconds = 0.0f;
+	};
+
+	UE_LOG(LogTemp, Warning, TEXT("seconds: %i"), Seconds);
 }
 
 void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

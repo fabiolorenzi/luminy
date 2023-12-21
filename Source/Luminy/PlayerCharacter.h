@@ -33,11 +33,16 @@ public:
 		int CatchedTargets;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
 		float RunningPower;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PlayerVars)
+		int Seconds;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PlayerVars)
+		int Minutes;
 	
 	bool IsRunning;
 	bool IsRunningBlocked;
 
 	float WalkingSpeed;
+	float TemporaryTime;
 
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);
