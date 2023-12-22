@@ -29,6 +29,8 @@ APlayerCharacter::APlayerCharacter()
 	FollowCamera->bUsePawnControlRotation = true;
 
 	IsPaused = false;
+	HasWon = false;
+	IsDead = false;
 	IsPlayerDead = false;
 	Life = 100.0f;
 	RunningPower = 30.0f;
@@ -98,7 +100,9 @@ void APlayerCharacter::PauseGame()
 
 void APlayerCharacter::RestartGame()
 {
-	if (IsPaused) {
+	UE_LOG(LogTemp, Warning, TEXT("restart 1"));
+	if (IsPaused || HasWon || IsDead) {
+		UE_LOG(LogTemp, Warning, TEXT("restart 2"));
 		UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
 	};
 }
@@ -108,6 +112,22 @@ void APlayerCharacter::QuitGame()
 	if (IsPaused) {
 		FGenericPlatformMisc::RequestExit(false);
 	};
+}
+
+void APlayerCharacter::Victory()
+{
+	HasWon = true;
+
+	FTimerHandle UnusedHandle;
+	GetWorldTimerManager().SetTimer(UnusedHandle, this, &APlayerCharacter::RestartGame, 5.0f, false);
+}
+
+void APlayerCharacter::Death()
+{
+	IsDead = true;
+
+	FTimerHandle UnusedHandle;
+	GetWorldTimerManager().SetTimer(UnusedHandle, this, &APlayerCharacter::RestartGame, 5.0f, false);
 }
 
 void APlayerCharacter::BeginPlay()
@@ -143,6 +163,14 @@ void APlayerCharacter::Tick(float DeltaTime)
 	if (Seconds >= 60.0f) {
 		Minutes += 1;
 		Seconds = 0.0f;
+	};
+
+	if (CatchedTargets == 3) {
+		Victory();
+	};
+
+	if (Life <= 0) {
+		Death();
 	};
 }
 

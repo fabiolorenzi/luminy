@@ -27,6 +27,10 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
 		bool IsPaused;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
+		bool HasWon;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
+		bool IsDead;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
 		float Life;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
 		bool IsPlayerDead;
@@ -54,6 +58,8 @@ public:
 	void PauseGame();
 	void RestartGame();
 	void QuitGame();
+	void Victory();
+	void Death();
 
 protected:
 	virtual void BeginPlay() override;
