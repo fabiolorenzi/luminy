@@ -45,7 +45,6 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::OnBeginOverlap(UPrimitiveComponent *HitComp, AActor *OtherActor, UPrimitiveComponent *OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &Sweep)
 {
 	if (OtherActor->ActorHasTag("Treasure")) {
-		UE_LOG(LogTemp, Warning, TEXT("Catched"));
 		CatchedTargets += 1;
 		Cast<ATreasure>(OtherActor)->Catch();
 	};
