@@ -4,6 +4,8 @@
 #include "GameFramework/Actor.h"
 #include "Kismet/GameplayStatics.h"
 
+#include "Treasure.h"
+
 APlayerCharacter::APlayerCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -38,6 +40,15 @@ APlayerCharacter::APlayerCharacter()
 	TemporaryTime = 0.0f;
 
 	WalkingSpeed = GetCharacterMovement()->MaxWalkSpeed;
+}
+
+void APlayerCharacter::OnBeginOverlap(UPrimitiveComponent *HitComp, AActor *OtherActor, UPrimitiveComponent *OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &Sweep)
+{
+	if (OtherActor->ActorHasTag("Treasure")) {
+		UE_LOG(LogTemp, Warning, TEXT("Catched"));
+		CatchedTargets += 1;
+		Cast<ATreasure>(OtherActor)->Catch();
+	};
 }
 
 void APlayerCharacter::MoveForward(float Axis)
@@ -103,6 +114,7 @@ void APlayerCharacter::QuitGame()
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &APlayerCharacter::OnBeginOverlap);
 }
 
 void APlayerCharacter::Tick(float DeltaTime)

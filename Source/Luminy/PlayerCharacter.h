@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/CapsuleComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -37,6 +38,8 @@ public:
 		int Seconds;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PlayerVars)
 		int Minutes;
+	UFUNCTION()
+		void OnBeginOverlap(class UPrimitiveComponent* HitComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& Sweep);
 	
 	bool IsRunning;
 	bool IsRunningBlocked;
