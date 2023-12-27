@@ -1,5 +1,25 @@
 [
 	{
+		"file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\Enemy.cpp",
+		"command": "cl.exe @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Luminy\\Luminy.193.rsp\"",
+		"directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\Enemy.h",
+		"command": "cl.exe @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Luminy\\Luminy.193.rsp\"",
+		"directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\EnemyFindPlayer_BTTask.cpp",
+		"command": "cl.exe @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Luminy\\Luminy.193.rsp\"",
+		"directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\EnemyFindPlayer_BTTask.h",
+		"command": "cl.exe @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Luminy\\Luminy.193.rsp\"",
+		"directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
+	},
+	{
 		"file": "D:\\\\Epic Games\\\\Projects\\\\Luminy\\\\Source\\\\Luminy\\\\Luminy.Build.cs",
 		"command": "cl.exe @\"D:\\Epic Games\\Projects\\Luminy\\.vscode\\compileCommands_Luminy\\Luminy.193.rsp\"",
 		"directory": "D:\\Epic Games\\UE_4.26\\Engine\\Source"
