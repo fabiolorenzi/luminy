@@ -9,7 +9,7 @@ UEnemyFindPlayer_BTTask::UEnemyFindPlayer_BTTask()
 
 EBTNodeResult::Type UEnemyFindPlayer_BTTask::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-    if (APawn* Player = UGameplayStatics::GetPlayerPawn(GetWorld(), 0) || APlayerCharacter* Player = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0)) {
+    if (APawn* Player = UGameplayStatics::GetPlayerPawn(GetWorld(), 0)) {
         auto Blackboard = OwnerComp.GetBlackboardComponent();
         Blackboard->SetValueAsObject(PlayerKey.SelectedKeyName, Player);
 

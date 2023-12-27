@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTTaskNode.h"
-#include "PlayerCharacter.h"
 #include "EnemyFindPlayer_BTTask.generated.h"
 
 UCLASS()
