@@ -13,9 +13,6 @@ class LUMINY_API AEnemy : public ACharacter
 public:
 	AEnemy();
 
-	UPROPERTY(EditAnywhere, Category = "EnemyVars")
-		float Speed;
-
 protected:
 	virtual void BeginPlay() override;
 
