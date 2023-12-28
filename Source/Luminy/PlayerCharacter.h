@@ -34,6 +34,8 @@ public:
 		float Life;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
 		bool IsPlayerDead;
+	UPROPERTY(VisibleAnywhere, BlueprintreadOnly, Category = PlayerVars)
+		bool IsPlayerUnderAttack;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
 		int CatchedTargets;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerVars)
@@ -44,6 +46,8 @@ public:
 		int Minutes;
 	UFUNCTION()
 		void OnBeginOverlap(class UPrimitiveComponent* HitComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& Sweep);
+	UFUNCTION()
+		void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 	
 	bool IsRunning;
 	bool IsRunningBlocked;

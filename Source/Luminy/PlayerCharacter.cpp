@@ -32,6 +32,7 @@ APlayerCharacter::APlayerCharacter()
 	HasWon = false;
 	IsDead = false;
 	IsPlayerDead = false;
+	IsPlayerUnderAttack = false;
 	Life = 100.0f;
 	RunningPower = 30.0f;
 	IsRunningBlocked = false;
@@ -49,6 +50,17 @@ void APlayerCharacter::OnBeginOverlap(UPrimitiveComponent *HitComp, AActor *Othe
 	if (OtherActor->ActorHasTag("Treasure")) {
 		CatchedTargets += 1;
 		Cast<ATreasure>(OtherActor)->Catch();
+	};
+	
+	if (OtherActor->ActorHasTag("Enemy")) {
+		IsPlayerUnderAttack = true;
+	};
+}
+
+void APlayerCharacter::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	if (OtherActor->ActorHasTag("Enemy")) {
+		IsPlayerUnderAttack = false;
 	};
 }
 
@@ -100,9 +112,7 @@ void APlayerCharacter::PauseGame()
 
 void APlayerCharacter::RestartGame()
 {
-	UE_LOG(LogTemp, Warning, TEXT("restart 1"));
 	if (IsPaused || HasWon || IsDead) {
-		UE_LOG(LogTemp, Warning, TEXT("restart 2"));
 		UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
 	};
 }
@@ -134,6 +144,7 @@ void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &APlayerCharacter::OnBeginOverlap);
+	GetCapsuleComponent()->OnComponentEndOverlap.AddDynamic(this, &APlayerCharacter::OnOverlapEnd);
 }
 
 void APlayerCharacter::Tick(float DeltaTime)
@@ -170,7 +181,14 @@ void APlayerCharacter::Tick(float DeltaTime)
 	};
 
 	if (Life <= 0) {
+		IsPlayerDead = true;
 		Death();
+	};
+
+	if (IsPlayerUnderAttack && !IsPlayerDead) {
+		Life -= 20.0f * DeltaTime;
+	} else if (Life <= 100.0f && !IsPlayerDead) {
+		Life += 2.0f * DeltaTime;
 	};
 }
 
