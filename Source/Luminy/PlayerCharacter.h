@@ -12,6 +12,8 @@
 
 #include "PlayerCharacter.generated.h"
 
+class USoundCue;
+
 UCLASS()
 class LUMINY_API APlayerCharacter : public ACharacter
 {
@@ -71,4 +73,11 @@ protected:
 public:	
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+private:
+	UPROPERTY(EditAnywhere)
+		USoundCue* AttackSound;
+	UPROPERTY(EditAnywhere)
+		USoundCue* WalkingSound;
+	UPROPERTY(EditAnywhere)
+		USoundCue* RunningSound;
 };

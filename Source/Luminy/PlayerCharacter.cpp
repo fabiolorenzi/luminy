@@ -3,6 +3,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/Actor.h"
 #include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 #include "Treasure.h"
 
@@ -187,6 +188,7 @@ void APlayerCharacter::Tick(float DeltaTime)
 
 	if (IsPlayerUnderAttack && !IsPlayerDead) {
 		Life -= 20.0f * DeltaTime;
+		UGameplayStatics::PlaySound2D(this, AttackSound);
 	} else if (Life <= 100.0f && !IsPlayerDead) {
 		Life += 2.0f * DeltaTime;
 	};
