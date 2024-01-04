@@ -4,6 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundCue.h"
+#include "Components/AudioComponent.h"
 
 #include "Treasure.h"
 
@@ -42,6 +43,7 @@ APlayerCharacter::APlayerCharacter()
 	Seconds = 0;
 	Minutes = 0;
 	TemporaryTime = 0.0f;
+	IsAttackSoundPlaying = false;
 
 	WalkingSpeed = GetCharacterMovement()->MaxWalkSpeed;
 }
@@ -188,9 +190,20 @@ void APlayerCharacter::Tick(float DeltaTime)
 
 	if (IsPlayerUnderAttack && !IsPlayerDead) {
 		Life -= 20.0f * DeltaTime;
-		UGameplayStatics::PlaySound2D(this, AttackSound);
+		if (!IsAttackSoundPlaying) {
+			AttackSoundComponent = UGameplayStatics::SpawnSound2D(this, AttackSound, 0.5f);
+			IsAttackSoundPlaying = true;
+		};
 	} else if (Life <= 100.0f && !IsPlayerDead) {
 		Life += 2.0f * DeltaTime;
+		if (IsAttackSoundPlaying) {
+			IsAttackSoundPlaying = false;
+			AttackSoundComponent->Stop();
+		};
+	};
+	
+	if (IsPlayerDead) {
+		AttackSoundComponent->Stop();
 	};
 }
 

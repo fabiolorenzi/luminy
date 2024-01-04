@@ -13,6 +13,7 @@
 #include "PlayerCharacter.generated.h"
 
 class USoundCue;
+class UAudioComponent;
 
 UCLASS()
 class LUMINY_API APlayerCharacter : public ACharacter
@@ -76,8 +77,6 @@ public:
 private:
 	UPROPERTY(EditAnywhere)
 		USoundCue* AttackSound;
-	UPROPERTY(EditAnywhere)
-		USoundCue* WalkingSound;
-	UPROPERTY(EditAnywhere)
-		USoundCue* RunningSound;
+	UAudioComponent* AttackSoundComponent;
+	bool IsAttackSoundPlaying;
 };
